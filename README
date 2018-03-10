@@ -1,0 +1,14 @@
+Logi Circle only allows 24 hours of footage on their free tier. I don't
+want to pay subscription and thus made this to periodically pull videos
+from their cloud onto my cloud.
+
+It uses ffmpeg to bake timestamps into video file, and aws glacier for
+long-term storage.
+
+I have these in my crontab:
+
+    30 */6 * * * src/circle/download.py >/dev/null 2>&1
+    30 3   * * * src/circle/truncate.sh >/dev/null 2>&1
+
+
+// vim: set tw=72:
